@@ -82,7 +82,8 @@ impl WFC {
         }
 
         if possible_cells.len() == 0 {
-            panic!("NO CELLS HELP");
+            println!("Cells count: {}", field.len());
+            panic!("x:{x};y:{y};NO CELLS HELP");
         }
 
         /*println!("\nX:{x}; Y:{y}; Possible cells:");

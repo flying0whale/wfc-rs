@@ -1,7 +1,8 @@
 pub type Pixel = [u8; 3];
 
-pub const WHITE: Pixel = [255, 255, 255];
-pub const BLACK: Pixel = [0, 0, 0];
+pub const WHITE: Pixel = [235, 235, 235];
+pub const BLUE:  Pixel = [53,  137, 191];
+pub const BLACK: Pixel = [37,  38,  40];
 
 pub const SIDE_UP:    usize = 0;
 pub const SIDE_RIGHT: usize = 1;
@@ -35,57 +36,146 @@ impl Cell {
         return Cell { data, side };
     }
 }
-pub const CELLS: [Cell; 7] = [
+pub const CELLS: [Cell; 19] = [
     CELL0000, CELL0022, CELL0202,
     CELL0220, CELL2020, CELL2002,
-    CELL2200
+    CELL2200, CELL2222,
+    CELL0011, CELL0101, CELL0110,
+    CELL1010, CELL1001, CELL1100,
+    CELL1111,
+    CELL2121, CELL2121_V2,
+    CELL1212, CELL1212_V2
 ];
 
 pub const CELL0000: Cell = Cell {
     side: [0, 0, 0, 0],
-    data: [WHITE, WHITE, WHITE,
-           WHITE, WHITE, WHITE,
-           WHITE, WHITE, WHITE]
+    data: [BLACK, BLACK, BLACK,
+           BLACK, BLACK, BLACK,
+           BLACK, BLACK, BLACK]
 };
 
 pub const CELL0022: Cell = Cell {
     side: [0, 0, 2, 2],
-    data: [WHITE, WHITE, WHITE,
-           BLACK, BLACK, WHITE,
-           WHITE, BLACK, WHITE]
+    data: [BLACK, BLACK, BLACK,
+           BLUE,  BLUE,  BLACK,
+           BLACK, BLUE,  BLACK]
 };
 
 pub const CELL0202: Cell = Cell {
     side: [0, 2, 0, 2],
-    data: [WHITE, WHITE, WHITE,
-           BLACK, BLACK, BLACK,
-           WHITE, WHITE, WHITE]
+    data: [BLACK, BLACK, BLACK,
+           BLUE,  BLUE,  BLUE,
+           BLACK, BLACK, BLACK]
 };
 
 pub const CELL0220: Cell = Cell {
     side: [0, 2, 2, 0],
-    data: [WHITE, WHITE, WHITE,
-           WHITE, BLACK, BLACK,
-           WHITE, BLACK, WHITE]
+    data: [BLACK, BLACK, BLACK,
+           BLACK, BLUE,  BLUE,
+           BLACK, BLUE,  BLACK]
 };
 
 pub const CELL2020: Cell = Cell {
     side: [2, 0, 2, 0],
-    data: [WHITE, BLACK, WHITE,
-           WHITE, BLACK, WHITE,
-           WHITE, BLACK, WHITE]
+    data: [BLACK, BLUE, BLACK,
+           BLACK, BLUE, BLACK,
+           BLACK, BLUE, BLACK]
 };
 
 pub const CELL2002: Cell = Cell {
     side: [2, 0, 0, 2],
-    data: [WHITE, BLACK, WHITE,
-           BLACK, BLACK, WHITE,
-           WHITE, WHITE, WHITE]
+    data: [BLACK, BLUE,  BLACK,
+           BLUE,  BLUE,  BLACK,
+           BLACK, BLACK, BLACK]
 };
 
 pub const CELL2200: Cell = Cell {
     side: [2, 2, 0, 0],
-    data: [WHITE, BLACK, WHITE,
-           WHITE, BLACK, BLACK,
-           WHITE, WHITE, WHITE]
+    data: [BLACK, BLUE,  BLACK,
+           BLACK, BLUE,  BLUE,
+           BLACK, BLACK, BLACK]
+};
+
+pub const CELL2222: Cell = Cell {
+    side: [2, 2, 2, 2],
+    data: [BLACK, BLUE, BLACK,
+           BLUE,  BLUE, BLUE,
+           BLACK, BLUE, BLACK]
+};
+
+pub const CELL0011: Cell = Cell {
+    side: [0, 0, 1, 1],
+    data: [BLACK, BLACK, BLACK,
+           WHITE, WHITE, BLACK,
+           BLACK, WHITE, BLACK]
+};
+
+pub const CELL0101: Cell = Cell {
+    side: [0, 1, 0, 1],
+    data: [BLACK, BLACK, BLACK,
+           WHITE, WHITE, WHITE,
+           BLACK, BLACK, BLACK]
+};
+
+pub const CELL0110: Cell = Cell {
+    side: [0, 1, 1, 0],
+    data: [BLACK, BLACK, BLACK,
+           BLACK, WHITE, WHITE,
+           BLACK, WHITE, BLACK]
+};
+
+pub const CELL1010: Cell = Cell {
+    side: [1, 0, 1, 0],
+    data: [BLACK, WHITE, BLACK,
+           BLACK, WHITE, BLACK,
+           BLACK, WHITE, BLACK]
+};
+
+pub const CELL1001: Cell = Cell {
+    side: [1, 0, 0, 1],
+    data: [BLACK, WHITE, BLACK,
+           WHITE, WHITE, BLACK,
+           BLACK, BLACK, BLACK]
+};
+
+pub const CELL1100: Cell = Cell {
+    side: [1, 1, 0, 0],
+    data: [BLACK, WHITE, BLACK,
+           BLACK, WHITE, WHITE,
+           BLACK, BLACK, BLACK]
+};
+
+pub const CELL1111: Cell = Cell {
+    side: [1, 1, 1, 1],
+    data: [BLACK, WHITE, BLACK,
+           WHITE, WHITE, WHITE,
+           BLACK, WHITE, BLACK]
+};
+
+pub const CELL1212: Cell = Cell {
+    side: [1, 2, 1, 2],
+    data: [BLACK, WHITE, BLACK,
+           BLUE,  BLUE, BLUE,
+           BLACK, WHITE, BLACK]
+};
+
+pub const CELL1212_V2: Cell = Cell {
+    side: [1, 2, 1, 2],
+    data: [BLACK, WHITE, BLACK,
+           BLUE,  BLUE, BLUE,
+           BLACK, WHITE, BLACK]
+};
+
+pub const CELL2121: Cell = Cell {
+    side: [2, 1, 2, 1],
+    data: [BLACK, BLUE, BLACK,
+           WHITE, BLUE, WHITE,
+           BLACK, BLUE, BLACK]
+};
+
+pub const CELL2121_V2: Cell = Cell {
+    side: [2, 1, 2, 1],
+    data: [BLACK, BLUE,  BLACK,
+           WHITE, WHITE, WHITE,
+           BLACK, BLUE,  BLACK]
 };
