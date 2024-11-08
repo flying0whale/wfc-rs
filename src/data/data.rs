@@ -8,6 +8,7 @@ pub const SIDE_RIGHT: usize = 1;
 pub const SIDE_DOWN:  usize = 2;
 pub const SIDE_LEFT:  usize = 3;
 
+#[derive(Clone, Copy)]
 pub struct Cell {
     pub data: [Pixel; 9],
     pub side: [u8; 4]
@@ -22,10 +23,10 @@ pub struct Cell {
 impl Default for Cell {
     fn default() -> Self {
         return Self::new([
-            WHITE, WHITE, WHITE,
-            WHITE, WHITE, WHITE,
-            WHITE, WHITE, WHITE
-        ], [0, 0, 0, 0]);
+            BLACK, BLACK, BLACK,
+            BLACK, BLACK, BLACK,
+            BLACK, BLACK, BLACK
+        ], [255, 255, 255, 255]);
     }
 }
 
