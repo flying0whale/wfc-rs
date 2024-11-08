@@ -1,24 +1,27 @@
 use image::{ImageBuffer, Rgb, RgbImage};
 use rand::{thread_rng, Rng};
 
-use crate::data::data::{Cell, CELLS, SIDE_DOWN, SIDE_LEFT, SIDE_RIGHT, SIDE_UP, CELL0220};
+use crate::data::data::{Cell, SIDE_DOWN, SIDE_LEFT, SIDE_RIGHT, SIDE_UP};
 
 pub struct WFC {
-    pub size: usize,
-    pub cell_size: usize
+    size: usize,
+    cell_size: usize,
+    cells: Vec<Cell>
 }
 
 impl WFC {
-    pub fn new(size: usize, cell_size: usize) -> Self {
+    pub fn new(size: usize, cell_size: usize, cells: Vec<Cell>) -> Self {
         return WFC {
             size,
-            cell_size
+            cell_size,
+            cells
         };
     }
 
     pub fn wfc(&mut self) {
         let mut field: Vec<Cell> = vec![];
-        let rand_cell = CELL0220;
+        let mut rng = thread_rng();
+        let rand_cell = self.cells[rng.gen_range(0..self.cells.len())];
 
         field.push(rand_cell);
 
@@ -67,7 +70,7 @@ impl WFC {
         let n_up   = neighbors[0];
         let n_left = neighbors[1];
 
-        let mut possible_cells: Vec<Cell> = CELLS.clone().to_vec();
+        let mut possible_cells: Vec<Cell> = self.cells.clone().to_vec();
 
         if n_up.is_some() {
             possible_cells = possible_cells.into_iter().filter(|c| {

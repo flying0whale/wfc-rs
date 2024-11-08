@@ -1,27 +1,29 @@
-use std::ops::Deref;
-
 use super::data::{Cell, CellPixel, Pixel};
 
 pub struct CellGen { }
 
 impl CellGen {
-    pub fn gen_all_cells(bg: Pixel, pixels: Vec<CellPixel>) -> Vec<Cell> {
-        let mut cells = vec![Cell {
-            side: [0, 0, 0, 0],
-            data: [bg, bg, bg,
-                   bg, bg, bg,
-                   bg, bg, bg]
-        }];
+    pub fn gen_all_cells(bg: Pixel, pixels: Vec<CellPixel>, empty: u8) -> Vec<Cell> {
+        let mut cells = vec![];
+
+        for _ in 0..empty {
+            cells.push(Cell {
+                side: [0, 0, 0, 0],
+                data: [bg, bg, bg,
+                       bg, bg, bg,
+                       bg, bg, bg]
+            });
+        }
 
         for pixel in pixels.iter() {
             cells.append(&mut Self::gen_normal_cells(bg, pixel));
         }
 
         if pixels.len() > 1 {
-            for x in 0..(pixels.len() - 1) {
+            for x in 0..pixels.len() {
                 let px1 = pixels.iter().nth(x).unwrap();
 
-                for y in (x + 1)..(pixels.len() - 1) {
+                for y in (x + 1)..pixels.len() {
                     let px2 = pixels.iter().nth(y).unwrap();
                     cells.append(&mut Self::gen_connections(bg, px1, px2));
                 }
